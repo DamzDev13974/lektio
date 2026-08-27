@@ -31,7 +31,7 @@ export default function LivresProvider({children}){
 
         //Je fais un nouveau tableau via filter() avec les livres correspondants à l'auteur ou titre saisie dans la recherche
         return livres.filter((livre)=>
-            livre.title.toLowerCase().includes(recherche.toLowerCase()) || livre.author.toLowerCase().includes(recherche.toLowerCase())
+            livre.title.toLowerCase().includes(recherche.trim().toLowerCase()) || livre.author.toLowerCase().includes(recherche.trim().toLowerCase())
         );
     }
 

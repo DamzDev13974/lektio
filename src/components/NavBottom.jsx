@@ -7,15 +7,15 @@ export default function NavBottom(){
 
     return (
         <div className="nav-bottom">
-            <NavLink to="/"> 
+            <NavLink to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil"> 
                 {/* mis en nav vers la bibliotheque car pas de store dédiés pour la librairie */}
-                <ShoppingCartIcon size={24} /> 
+                <ShoppingCartIcon size={24} /> Librairie
             </NavLink>
-            <NavLink to="/">
-                <BookOpenIcon size={24} />
+            <NavLink to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
+                <BookOpenIcon size={24} /> Ma bibliotheque
             </NavLink>
-            <NavLink to="/preference">
-                <GearIcon size={24} />
+            <NavLink to="/preference" aria-label="Aller à la page préférences" title="Aller à la page préférénces">
+                <GearIcon size={24} /> Paramètres
             </NavLink>
         </div>
     )

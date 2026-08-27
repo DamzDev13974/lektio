@@ -1,7 +1,11 @@
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { useLivres } from "../contexts/LivresContext";
 
-export default function SearchBar({recherche, setRecherche}){
+export default function SearchBar(){
     // Composant permettant de faire la recherche de livre par titre ou auteur
+
+    //recup du hook des livres
+    const {recherche,setRecherche} = useLivres();
 
     return(
         <div className="search-book">
