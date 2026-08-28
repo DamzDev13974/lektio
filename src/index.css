@@ -28,3 +28,69 @@
     background-color: #000;
     color : #FFFFFF;
 }
+
+/* Test choix couleur */
+
+.color-wrapper input{
+    appearance: none;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#color-default {
+    background-color: #6C19FF;
+}
+
+#color-blue {
+    background-color: #3A78C8;
+}
+
+#color-blue-light {
+    background-color: #25989F;
+}
+
+#color-green {
+    background-color: #309661;
+}
+
+#color-orange {
+    background-color: #E18306;
+}
+
+#color-red {
+    background-color: #DC415D;
+}
+
+.color-wrapper input:checked {
+    outline: 3px solid #6C19FF;
+    outline-offset: 3px;
+}
+
+/* Test Typo */
+
+.font-serif {
+    font-family: serif;
+}
+
+.font-sansSerif {
+    font-family: Arial, sans-serif;
+}
+
+.font-openDys {
+    font-family: "OpenDyslexic", sans-serif;
+}
+
+.width-narrow {
+    max-width: 500px;
+}
+
+.width-normal {
+    max-width: 700px;
+}
+
+.width-wide {
+    max-width: 900px;
+}

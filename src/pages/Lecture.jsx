@@ -4,6 +4,7 @@ import { CaretLeftIcon } from "@phosphor-icons/react";
 import ProgressBar from "../components/ProgressBar";
 import { useState } from "react";
 import { usePreferences } from "../contexts/PreferencesContext";
+import TypoSettings from "../components/settings/TypoSettings";
 
 export default function Lecture(){
     //Page permettant la lecture du livre (lorem ipsum pour le projet), voir le titre et l’auteur de celui ci, ainsi qu’une barre de progression sur la lecture du livre. Cette page présentera  un overlay des réglages possible pour la lecture
@@ -16,7 +17,7 @@ export default function Lecture(){
     const livre = livres.find((livre)=>livre.id === Number(id));
     //State toggle pour l'overlay
     const [parametresOuverts, setParametresOuverts] = useState(false); //init boolean en false
-    const{theme} = usePreferences();
+    const{theme,largeurContenu} = usePreferences();
 
     //Si pas de livre existant
     if(!livre){
@@ -49,14 +50,14 @@ export default function Lecture(){
                 </div>
             </div>
             <h2>Chapitre 6</h2>
-            <div className="page-content">
+            <div className={"page-content width-" + largeurContenu}>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <button className="typo-overlay" arai-label="Ouvrir ou fermer les paramètres de lecture " title="Ouvrir ou fermer les paramètres de lecture" onClick={()=> setParametresOuverts(!parametresOuverts)}></button>
             {/* au click j'inverser le boolean de l'overlay ouvert ou fermé */}
             {parametresOuverts && (
-                <h2>Test overlay</h2>
+                <TypoSettings/>
             )}
         </div>
     )
