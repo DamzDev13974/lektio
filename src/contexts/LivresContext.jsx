@@ -7,9 +7,9 @@ export const LivresContexts = createContext();
 export default function LivresProvider({children}){
 
     //State pour la liste des livres de la bibliotheque
-    const [livres, setLivres] = useState([]);
+    const [livres, setLivres] = useState([]); //init en tableau
     //State pour la recherche filtrée
-    const [recherche, setRecherche] = useState("");
+    const [recherche, setRecherche] = useState("");//init en string vide
 
 
     //hook useEffect avec dépendance vide pour qu'il ne soit utilisé qu'une fois lors du montage (sauf en dev)

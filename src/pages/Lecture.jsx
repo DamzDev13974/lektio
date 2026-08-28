@@ -3,6 +3,7 @@ import { useLivres } from "../contexts/LivresContext"
 import { CaretLeftIcon } from "@phosphor-icons/react";
 import ProgressBar from "../components/ProgressBar";
 import { useState } from "react";
+import { usePreferences } from "../contexts/PreferencesContext";
 
 export default function Lecture(){
     //Page permettant la lecture du livre (lorem ipsum pour le projet), voir le titre et l’auteur de celui ci, ainsi qu’une barre de progression sur la lecture du livre. Cette page présentera  un overlay des réglages possible pour la lecture
@@ -14,13 +15,14 @@ export default function Lecture(){
     //Recup de la recette via find() et number() pour la conversion en nombre
     const livre = livres.find((livre)=>livre.id === Number(id));
     //State toggle pour l'overlay
-    const [parametresOuverts, setParametresOuverts] = useState(false);
+    const [parametresOuverts, setParametresOuverts] = useState(false); //init boolean en false
+    const{theme} = usePreferences();
 
     //Si pas de livre existant
     if(!livre){
         return(
-            <section>
-                <div className="top-read">
+            <div className={"read-page theme-"+theme}> 
+                <div className="top-read"> 
                     <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
                         <CaretLeftIcon size={24}/>
                     </Link>
@@ -29,13 +31,13 @@ export default function Lecture(){
                         <p>Livre demandé non trouvé</p>
                     </div>
                 </div>
-            </section>
+            </div>
         )
     }
 
 
     return(
-        <section className="read-page">
+        <div className={"read-page theme-"+theme}>
             <div className="top-read">
                 <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
                     <CaretLeftIcon size={24}/>
@@ -56,6 +58,6 @@ export default function Lecture(){
             {parametresOuverts && (
                 <h2>Test overlay</h2>
             )}
-        </section>
+        </div>
     )
 }

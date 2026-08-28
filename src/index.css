@@ -12,3 +12,19 @@
     }
 }
 
+/* Test changement de theme */
+
+.theme-clear{
+    background-color: #FFFFFF;
+    color: #000;
+}
+
+.theme-sepia{
+    background-color: #FBF2E4;
+    color: #786244;
+}
+
+.theme-dark{
+    background-color: #000;
+    color : #FFFFFF;
+}
