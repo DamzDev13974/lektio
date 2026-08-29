@@ -22,43 +22,51 @@ export default function Lecture(){
     //Si pas de livre existant
     if(!livre){
         return(
-            <div className={"read-page theme-"+theme}> 
-                <div className="top-read"> 
-                    <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
-                        <CaretLeftIcon size={24}/>
-                    </Link>
-                     <div className="read-wrapper">
-                        <h1 className="primary-title">Page de lecture</h1>
-                        <p>Livre demandé non trouvé</p>
+            <>
+                <main>
+                    <div className={"read-page theme-"+theme}> 
+                        <div className="top-read"> 
+                            <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
+                                <CaretLeftIcon size={24}/>
+                            </Link>
+                            <div className="read-wrapper">
+                                <h1 className="primary-title">Page de lecture</h1>
+                                <p>Livre demandé non trouvé</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </main>
+            </>
         )
     }
 
 
     return(
-        <div className={"read-page theme-"+theme}>
-            <div className="top-read">
-                <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
-                    <CaretLeftIcon size={24}/>
-                </Link>
-                <div className="read-wrapper">
-                    <h1  className="primary-title">{livre.title}</h1>
-                    <p>{livre.author}</p>
-                    <ProgressBar progression={livre.readingProgress}/>
+        <>
+            <main>
+                <div className={"read-page theme-"+theme}>
+                    <div className="top-read">
+                        <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
+                            <CaretLeftIcon size={24}/>
+                        </Link>
+                        <div className="read-wrapper">
+                            <h1  className="primary-title">{livre.title}</h1>
+                            <p>{livre.author}</p>
+                            <ProgressBar progression={livre.readingProgress}/>
+                        </div>
+                    </div>
+                    <h2>Chapitre 6</h2>
+                    <div className={"page-content width-" + largeurContenu}>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <button className="typo-overlay" aria-label="Ouvrir ou fermer les paramètres de lecture " title="Ouvrir ou fermer les paramètres de lecture" onClick={()=> setParametresOuverts(!parametresOuverts)}></button>
+                    {/* au click j'inverser le boolean de l'overlay ouvert ou fermé */}
+                    {parametresOuverts && (
+                        <TypoSettings/>
+                    )}
                 </div>
-            </div>
-            <h2>Chapitre 6</h2>
-            <div className={"page-content width-" + largeurContenu}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <button className="typo-overlay" arai-label="Ouvrir ou fermer les paramètres de lecture " title="Ouvrir ou fermer les paramètres de lecture" onClick={()=> setParametresOuverts(!parametresOuverts)}></button>
-            {/* au click j'inverser le boolean de l'overlay ouvert ou fermé */}
-            {parametresOuverts && (
-                <TypoSettings/>
-            )}
-        </div>
+            </main>
+        </>
     )
 }

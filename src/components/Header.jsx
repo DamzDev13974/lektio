@@ -11,11 +11,11 @@ export default function Header(){
     return(
         <header>
             <div className="logo">
-                <Link to="/">
+                <Link to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil">
                     <BookBookmarkIcon  size={24} weight="fill"/> LEKTIO
                 </Link>
             </div>
-            <select name="select-lang" id="select-lang" value={langue} onChange={(e)=>setLangue(e.target.value)}>
+            <select name="select-lang" id="select-lang" value={langue} onChange={(e)=>setLangue(e.target.value)} aria-label="Choisir la langue">
                 {/* Je parcours le tableau des langues pour en faire une option par langue dans le select */}
                 {langues.map((langue)=>(
                     <option key={langue} value={langue}>{langue.toUpperCase()}</option>

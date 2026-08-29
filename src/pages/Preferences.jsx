@@ -3,6 +3,7 @@ import AppSettings from "../components/settings/AppSettings";
 import TypoSettings from "../components/settings/TypoSettings";
 import { usePreferences } from "../contexts/PreferencesContext";
 import { DatabaseIcon } from "@phosphor-icons/react";
+import Header from "../components/Header";
 
 
 export default function Preference(){
@@ -10,26 +11,23 @@ export default function Preference(){
 
     const{theme,traductions,langue} = usePreferences();
 
-    //Je fais un affichage temporaire, le temps que le json recup toutes les infos
-    if(!traductions.nav){
-        return (
-            <div className={"settings-page theme-"+theme}> 
-            <h1>Chargement en cours...</h1>
-            <NavBottom/>
-        </div>
-        )
-    }
+   
 
     return (
-        <div className={"settings-page theme-"+theme}> 
-            <h1>{traductions.nav.library[langue]}</h1>
-            <AppSettings/>
-            <TypoSettings/>
-            <div className="reset-local">
-                <h2><DatabaseIcon size={24}/>{traductions.settings.data.label[langue]}</h2>
-                <button onClick={()=>{localStorage.clear();window.location.reload();}}>{traductions.settings.data.resetPreferences[langue]}</button>
-            </div>
+        <>
+            <main>
+                <div className={"settings-page theme-"+theme}> 
+                    <Header/>
+                    <h1>{traductions.nav.settings[langue]}</h1>
+                    <AppSettings/>
+                    <TypoSettings/>
+                    <div className="reset-local">
+                        <h2><DatabaseIcon size={24}/>{traductions.settings.data.label[langue]}</h2>
+                        <button onClick={()=>{localStorage.clear();window.location.reload();}}>{traductions.settings.data.resetPreferences[langue]}</button>
+                    </div>
+                </div>
+            </main>
             <NavBottom/>
-        </div>
+        </>
     )
 }

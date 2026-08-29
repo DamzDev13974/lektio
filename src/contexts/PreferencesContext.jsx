@@ -10,11 +10,11 @@ export default function PreferencesProvider({children}){
     //Celui pour les traductions
     const [traductions, setTraductions] = useState({}); //init en objet
     //State pour la langue selectionnée
-    const [langue, setLangue] = useState("fr"); // init en string sur français
+    const [langue, setLangue] =  useState(() => {return localStorage.getItem("lang") || "fr"});
     //State pour les préférences de l'user
     const [theme,setTheme] = useState(()=>{ return localStorage.getItem("theme") || "clear"});//recup la valeur du localStorage sinon init en string sur clear
     const [couleur, setCouleur] = useState(()=>{ return localStorage.getItem("color") || "default"});
-    const [police, setPolice] = useState(()=>{return localStorage.getItem("police" || "serif")});
+    const [police, setPolice] = useState(()=>{return localStorage.getItem("police")|| "serif"});
     const [tailleTexte, setTailleTexte] = useState(()=>{
         //création de la variable valeur afin de la convertir en int par la suite
         const valeur = localStorage.getItem("tailleTexte");
@@ -23,18 +23,15 @@ export default function PreferencesProvider({children}){
     });
     const [interligne,setInterligne] =useState(()=>{
         const valeur = localStorage.getItem("interligne");
-        return valeur !== null ? parseInt(valeur) : 1.4;
+        return valeur !== null ? parseFloat(valeur) : 1.4;
     });
     const [espacementCaracteres, setEspacementCaracteres]=useState(()=>{
         const valeur = localStorage.getItem("espacementCaracteres");
-        return valeur !== null ? parseInt(valeur) : 1.4;
+        return valeur !== null ? parseFloat(valeur) : 1.4;
     });
-    const [largeurContenu, setLargeurContenu]=useState(()=>{
-        const valeur = localStorage.getItem("largeurContenu");
-        return valeur !== null ? parseInt(valeur) : 1.4;
-    });
+    const [largeurContenu, setLargeurContenu]=useState(()=>{return localStorage.getItem("largeurContenu") || "normal"});
 
-
+    
 
     //hook useEffect avec dépendance vide pour qu'il ne soit utilisé qu'une fois lors du montage (sauf en dev)
     useEffect(()=>{

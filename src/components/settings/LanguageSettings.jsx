@@ -11,7 +11,7 @@ export default function LanguageSettings(){
             {/* Je parcours le tableau des langues pour en faire une option par langue dans le select */}
             {langues.map((l)=>{
                 return(
-                    <label key={l} htmlFor={"langue" + l} >
+                    <label key={l} htmlFor={"langue-" + l} >
                         <input type="radio" name="langue" id={"langue-" + l}  value={l} checked={langue === l} onChange={(e)=>setLangue(e.target.value)}/>
                         {l.toUpperCase()}
                     </label>

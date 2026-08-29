@@ -8,7 +8,7 @@
     border-radius: 1rem;
     .percent{
         height: 100%;
-        background-color: #6C19FF;
+        background-color: var(--accent-color);
     }
 }
 
@@ -30,6 +30,36 @@
 }
 
 /* Test choix couleur */
+
+/* Couleur d'accentuation par défaut : violet */
+.accent-default {
+    --accent-color: #6C19FF;
+}
+
+/* Bleu */
+.accent-blue {
+    --accent-color: #3A78C8;
+}
+
+/* Bleu clair */
+.accent-blue-light {
+    --accent-color: #25989F;
+}
+
+/* Vert */
+.accent-green {
+    --accent-color: #309661;
+}
+
+/* Orange */
+.accent-orange {
+    --accent-color: #E18306;
+}
+
+/* Rouge */
+.accent-red {
+    --accent-color: #DC415D;
+}
 
 .color-wrapper input{
     appearance: none;
@@ -71,6 +101,20 @@
 
 /* Test Typo */
 
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("/fonts/OpenDyslexic-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
 .font-serif {
     font-family: serif;
 }
@@ -93,4 +137,23 @@
 
 .width-wide {
     max-width: 900px;
+}
+
+/* Test Badge */
+
+.cover-wrapper {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    padding: 4px 8px;
+    border-radius: 10px;
+
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 0.8rem;
 }

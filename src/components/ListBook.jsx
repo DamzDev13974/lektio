@@ -8,8 +8,10 @@ export default function ListBook(){
     const {livres, recherche, rechercherLivres} =  useLivres();
     //Const pour le resultat la recherche filtrée
     const resultats = rechercherLivres(recherche);
-
-
+    //Const pour le livre en cours ouvert. Récup via reduce() qui parcourt tout les livres et garde le dernier ouvert via la propriété lastOpenedAt
+    const livreEnCours = livres.reduce((dernier,livre)=>{
+        return new Date(livre.lastOpenedAt)>new Date(dernier.lastOpenedAt) ? livre : dernier;
+    })
     
     //Si la recherche existe, j'affiche le resultat de la recherche
     if(recherche.length > 0){
@@ -21,7 +23,7 @@ export default function ListBook(){
 
                 {resultats.map((livre)=>{
                     return(
-                        <CardBook key={livre.id} livre={livre}/>
+                        <CardBook key={livre.id} livre={livre} enCours={livre.id === livreEnCours.id}/>
                     )
                 
             })}
@@ -34,7 +36,7 @@ export default function ListBook(){
         <div className="list-book">
             {livres.map((livre)=>{
                 return(
-                    <CardBook key={livre.id} livre={livre}/>
+                    <CardBook key={livre.id} livre={livre} enCours={livre.id === livreEnCours.id}/>
                 )
             })};
         </div>
