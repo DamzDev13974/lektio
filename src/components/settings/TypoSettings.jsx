@@ -13,7 +13,7 @@ export default function TypoSettings(){
     return(
         <section className="typo-settings">
             <div className="typography">
-                <h2><TextAaIcon size={24}/>{traductions.settings.typography.label[langue]}</h2>
+                <h2 className="secondary-title"><TextAaIcon size={24}/>{traductions.settings.typography.label[langue]}</h2>
                     <FontSettings/>
                     <TypoRanges/>
                     <WidthSettings/>

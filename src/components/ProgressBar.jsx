@@ -3,7 +3,10 @@ export default function ProgressBar({progression}){
 
     return(
         <div className="progress-bar">
-            <div className="percent" style={{width : progression + "%"}}></div>
+            <p className="progress">{progression}%</p>
+            <div className="progress-track">
+                <div className="percent" style={{width : progression + "%"}}></div>
+            </div>
         </div>
     )
 }

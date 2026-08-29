@@ -8,7 +8,7 @@ export default function FontSettings(){
     
     return(
         <div className="font-settings">
-            <p>{traductions.settings.typography.label[langue]}</p>
+            <p>{traductions.settings.typography.fontFamily.label[langue]}</p>
             <label htmlFor="police-serif">
                 <input type="radio" name="police" id="police-serif" value="serif" checked={police === "serif"} onChange={(e)=>setPolice(e.target.value)}/>
                 {traductions.settings.typography.fontFamily.serif[langue]}

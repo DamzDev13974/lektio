@@ -18,7 +18,7 @@ export default function Preference(){
             <main>
                 <div className={"settings-page theme-"+theme}> 
                     <Header/>
-                    <h1>{traductions.nav.settings[langue]}</h1>
+                    <h1 className="primary-title">{traductions.nav.settings[langue]}</h1>
                     <AppSettings/>
                     <TypoSettings/>
                     <div className="reset-local">

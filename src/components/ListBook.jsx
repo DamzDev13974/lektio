@@ -38,7 +38,7 @@ export default function ListBook(){
                 return(
                     <CardBook key={livre.id} livre={livre} enCours={livre.id === livreEnCours.id}/>
                 )
-            })};
+            })}
         </div>
     )
     

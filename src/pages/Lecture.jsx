@@ -60,11 +60,13 @@ export default function Lecture(){
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
-                    <button className="typo-overlay" aria-label="Ouvrir ou fermer les paramètres de lecture " title="Ouvrir ou fermer les paramètres de lecture" onClick={()=> setParametresOuverts(!parametresOuverts)}></button>
-                    {/* au click j'inverser le boolean de l'overlay ouvert ou fermé */}
-                    {parametresOuverts && (
-                        <TypoSettings/>
-                    )}
+                    <div className={"reading-overlay " + (parametresOuverts ? "open" : "")}>
+                        <button className="typo-overlay" aria-label="Ouvrir ou fermer les paramètres de lecture " title="Ouvrir ou fermer les paramètres de lecture" onClick={()=> setParametresOuverts(!parametresOuverts)}></button>
+                        {/* au click j'inverser le boolean de l'overlay ouvert ou fermé */}
+                        {parametresOuverts && (
+                            <TypoSettings/>
+                        )}
+                    </div>
                 </div>
             </main>
         </>

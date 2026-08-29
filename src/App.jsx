@@ -18,9 +18,10 @@ const {traductions, couleur, theme,police,tailleTexte,interligne,espacementCarac
           );
       }
   return (
-    <div className={"app theme-" + theme + " font-" + police + " accent-" + couleur } style={{fontSize: tailleTexte + "px", lineHeight:interligne,letterSpacing: espacementCaracteres + "px"} }  >
+    <div className={"app theme-" + theme + " font-" + police + " accent-" + couleur } style={{"--font-size": tailleTexte + "px", "--line-height":interligne,"--letter-spacing": espacementCaracteres + "px"} }  >{/* Classe dynamique pour le css */}
       <Routes>
         <Route path="/" element={<Bibliotheque/>}/>
+        <Route path="/librairie" element={<Bibliotheque/>}/>{/* Creation pour le isActive de React différent de "/" */}
         <Route path="/lecture/:id" element={<Lecture/>}/>
         <Route path="/preference" element={<Preferences/>}/>
       </Routes>

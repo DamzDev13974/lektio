@@ -11,7 +11,7 @@ export default function NavBottom(){
 
     return (
         <nav className="nav-bottom">
-            <NavLink to="/" aria-label="Aller à l'accueil" title="Aller à l'accueil"> 
+            <NavLink to="/librairie" aria-label="Aller à l'accueil" title="Aller à l'accueil"> 
                 {/* mis en nav vers la bibliotheque car pas de store dédiés pour la librairie */}
                 <ShoppingCartIcon size={24} /> {traductions.nav.bookstore[langue]}
             </NavLink>

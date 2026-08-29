@@ -1,49 +1,124 @@
-/* Test progressBar */
+/* =========================================================
+   RESET ET STYLE GLOBAL
+   ========================================================= */
 
-.progress-bar{
-    width : 100%;
-    height: 4px;
-    background-color: white;
-    border : 1px solid #A3A3A3;
-    border-radius: 1rem;
-    .percent{
-        height: 100%;
-        background-color: var(--accent-color);
-    }
+/* Supprime les marges par défaut et simplifie le calcul des dimensions */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Test changement de theme */
-
-.theme-clear{
-    background-color: #FFFFFF;
-    color: #000;
+/* Style général de la page */
+body {
+    min-height: 100vh;
+    background-color: #222222;
+    font-family: Arial, sans-serif;
 }
 
-.theme-sepia{
-    background-color: #FBF2E4;
-    color: #786244;
+/* Les liens gardent la couleur du texte et retirent le soulignement */
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-.theme-dark{
-    background-color: #000;
-    color : #FFFFFF;
+/* Les images restent dans la largeur de leur conteneur */
+img {
+    width: 100%;
+    display: block;
 }
 
-/* Test choix couleur */
+/* Les boutons et champs utilisent la police sélectionnée dans l'application */
+button,input,select {
+    font: inherit;
+}
 
-/* Couleur d'accentuation par défaut : violet */
+
+/* =========================================================
+   POLICE OPENDYSLEXIC
+   ========================================================= */
+
+/* Charge la version normale de OpenDyslexic */
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("/fonts/OpenDyslexic-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Charge la version grasse de OpenDyslexic */
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("/fonts/OpenDyslexic-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* =========================================================
+   APPLICATION ET VARIABLES CSS
+   ========================================================= */
+
+/* Conteneur général de l'application */
+.app {
+    width: 100%;
+    min-height: 100vh;
+    margin: auto;
+    /* Variables prises par les classes dynamiques dans les composants */
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+/* =========================================================
+   DECLARATION DES VARIABLES DE THÈMES
+   ========================================================= */
+
+/* Thème clair */
+.theme-clear {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --card-background: #ffffff;
+    --border-color: #d6d6d6;
+}
+
+/* Thème sépia */
+.theme-sepia {
+    --background-color: #FBF2E4;
+    --text-color: #786244;
+    --card-background: #FBF2E4;
+    --border-color: #d6d6d6;
+}
+
+/* Thème sombre */
+.theme-dark {
+    --background-color: #000000;
+    --text-color: #FFFFFF;
+    --card-background: #222222;
+    --border-color: #555555;
+}
+
+
+/* =========================================================
+   DECLARATION DES VARIABLES COULEURS D'ACCENTUATION
+   ========================================================= */
+
+/* Violet par défaut */
 .accent-default {
-    --accent-color: #6C19FF;
+    --accent-color: #6c19ff;
 }
 
 /* Bleu */
 .accent-blue {
-    --accent-color: #3A78C8;
+    --accent-color: #3a78c8;
 }
 
 /* Bleu clair */
 .accent-blue-light {
-    --accent-color: #25989F;
+    --accent-color: #25989f;
 }
 
 /* Vert */
@@ -53,107 +128,879 @@
 
 /* Orange */
 .accent-orange {
-    --accent-color: #E18306;
+    --accent-color: #e18306;
 }
 
 /* Rouge */
 .accent-red {
-    --accent-color: #DC415D;
+    --accent-color: #dc415d;
 }
 
-.color-wrapper input{
+
+/* =========================================================
+   POLICES SÉLECTIONNABLES
+   ========================================================= */
+
+/* Police avec empattements */
+.font-serif {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Police sans empattements */
+.font-sansSerif {
+    font-family: "Inter", sans-serif; 
+}
+
+/* Police adaptée à la dyslexie */
+.font-openDys {
+    font-family: "OpenDyslexic", sans-serif;
+}
+
+
+/* =========================================================
+   ÉCRAN DE CHARGEMENT
+   ========================================================= */
+
+/* Centre le message pendant le chargement des traductions */
+.loading-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+/* Dispose le logo et le sélecteur de langue sur la même ligne */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Style du logo LEKTIO */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+/* Conteneur du select pour positionner l'icône personnalisée */
+.select-wrapper {
+    position: relative;
+}
+
+
+#select-lang {
+    width: 73px;
+    height: 34px;
+    padding: 0 2rem 0 0.8rem;
+    /* Cache la flèche native du navigateur pour le select */
     appearance: none;
-    width: 36px;
-    height: 36px;
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Place la flèche Phosphor à droite du select */
+.select-wrapper svg {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTENU PRINCIPAL DES PAGES
+   ========================================================= */
+
+/* Limite les pages à la largeur mobile de la maquette */
+.home-page,.settings-page,.read-page {
+    width: 100%;
+    min-height: calc(100vh - 130px);
+    margin: auto;
+    padding: 0 1.5rem 2rem 1.5rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+
+/* =========================================================
+   TITRES
+   ========================================================= */
+
+/* Style principal des titres de pages */
+.primary-title{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+}
+
+/* Titres des différentes cartes de préférences */
+.secondary-title{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1.4rem;
+}
+
+
+/* =========================================================
+   BARRE DE RECHERCHE
+   ========================================================= */
+
+/* Ajoute un espace sous la recherche */
+.search-book {
+    margin-bottom: 2rem;
+}
+
+/* Permet de placer l'icône dans le champ de recherche */
+.search-wrapper {
+    position: relative;
+}
+
+/* Style du champ de recherche */
+.search-wrapper input {
+    width: 100%;
+    height: 38px;
+    padding: 0 2.7rem 0 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    outline: none;
+}
+
+/* Change la bordure lorsque l'utilisateur sélectionne la recherche */
+.search-wrapper input:focus {
+    border-color: var(--accent-color);
+}
+
+/* Place la loupe à droite dans le champ */
+.search-wrapper svg {
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   LISTE DES LIVRES
+   ========================================================= */
+
+/* Dispose les livres sur deux colonnes avec Flexbox */
+.list-book {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 3rem 0;
+}
+
+/* Chaque carte occupe un peu moins de la moitié de la largeur */
+.card-book {
+    width: 163px;
+}
+/* Le lien occupe toute la carte */
+.card-book > a {
+    display: block;
+    width: 100%;
+}
+
+/* Titre du livre dans la card */
+.card-book > a > h2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.15rem;
+}
+
+/* Auteur du livre dans la card */
+.card-book > a > p {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
+
+
+/* =========================================================
+   COUVERTURES DES LIVRES
+   ========================================================= */
+
+/* Conteneur de couverture utilisé pour positionner badge et progression */
+.cover-wrapper {
+    position: relative;
+    height: 216px;
+    border: 1px solid;
+    border-radius: 0.4rem;
+    overflow: hidden;
+}
+
+/* Garde les couvertures dans les mêmes proportions */
+.cover-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   BADGE EN COURS
+   ========================================================= */
+
+/* Place le badge sur le haut de la couverture */
+.badge {
+    position: absolute;
+    top: 0.7rem;
+    left: 0.7rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1rem;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   BARRE DE PROGRESSION
+   ========================================================= */
+
+/* Bloc contenant le pourcentage et la barre de progression */
+.progress-bar {
+    width: 100%;
+}
+
+/* Affiche le pourcentage au-dessus de la barre */
+.progress {
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+    color : var(--text-color);
+}
+
+/* Fond de la barre de progression */
+.progress-track {
+    width: 100%;
+    height: 9px;
+    border: 1px solid #aaaaaa;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: white;
+}
+
+/* Partie remplie selon la progression du livre */
+.percent {
+    height: 100%;
+    background-color: var(--accent-color);
+}
+
+.cover-wrapper .progress-bar {
+    position: absolute;
+    left: 0.4rem;
+    bottom: 0.4rem;
+    width: calc(100% - 0.8rem);
+}
+
+/* =========================================================
+   NAVBOTTOM
+   ========================================================= */
+
+/* Navigation principale fixée visuellement en bas de l'application */
+.nav-bottom {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--card-background);
+    z-index: 20;
+}
+
+/* Présente l'icône au-dessus du texte */
+.nav-bottom a {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.6rem;
+}
+
+
+
+/* Met en évidence la page actuellement sélectionnée, classe active attribuée automatiquement par React dans un NavLink*/
+.nav-bottom a.active {
+    color: var(--accent-color);
+}
+
+
+/* =========================================================
+   PAGE LECTURE
+   ========================================================= */
+
+/* Conteneur principal de la page lecture */
+.read-page {
+    min-height: 100vh;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+}
+
+/* Zone supérieure contenant le retour, les infos du livre et la progression */
+.top-read {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0 1rem;
+    min-height: 138px;
+}
+
+/* Place la flèche à gauche du titre */
+.top-read > a {
+    margin-top: 0.5rem;
+}
+
+/* Contient le titre, l'auteur et la progression */
+.read-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Titre du livre */
+.read-wrapper .primary-title {
+    margin-bottom: 0.3rem;
+    font-size: 1.25rem;
+}
+
+/* Auteur du livre */
+.read-wrapper > p {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+/* Bloc complet de progression */
+.read-wrapper .progress-bar {
+    width: calc(100% + 2.5rem);
+    margin-left: -2.5rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Pourcentage de lecture */
+.read-wrapper .progress {
+    width: 100%;
+    margin-bottom: 0.3rem;
+    text-align: center;
+}
+
+/* Barre visible de progression */
+.read-wrapper .progress-track {
+    width: 90%;
+}
+
+/* Titre du chapitre */
+.read-page > h2 {
+    margin: 1.5rem 0;
+    text-align: center;
+    font-size: 1.13rem;
+}
+
+/* Zone contenant le texte du livre */
+.page-content {
+    margin: auto;
+}
+
+/* Espace entre les paragraphes */
+.page-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* =========================================================
+   LARGEUR DU CONTENU DE LECTURE
+   ========================================================= */
+
+/* Lecture étroite */
+.width-narrow {
+    width: 75%;
+}
+
+/* Lecture normale */
+.width-normal {
+    width: 90%;
+}
+
+/* Lecture large */
+.width-wide {
+    width: 100%;
+}
+
+
+/* =========================================================
+   OVERLAY DES PARAMÈTRES DE LECTURE
+   ========================================================= */
+
+/* Petit volet gris toujours visible en bas de la page Lecture */
+.reading-overlay {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    background-color: #F4F4F4;
+    border-radius: 2.5rem 2.5rem 0 0;
+    z-index: 30;
+}
+
+/* Quand les paramètres sont ouverts, le volet prend la hauteur de son contenu */
+.reading-overlay.open {
+    height: auto;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+}
+
+
+/* =========================================================
+   POIGNÉE DE L'OVERLAY
+   ========================================================= */
+
+/* Petite poignée permettant d'ouvrir ou fermer le volet */
+.typo-overlay {
+    width: 80px;
+    height: 6px;
+    border: none;
+    border-radius: 1rem;
+    background-color: #BCBCBC;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   CONTENU DE L'OVERLAY
+   ========================================================= */
+
+/* Le composant TypoSettings prend toute la largeur du volet ouvert */
+.reading-overlay .typo-settings {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* Card blanche contenant les réglages */
+.reading-overlay .typography {
+    margin: 0;
+    padding: 1.5rem;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    border: 1px solid #d6d6d6;
+    border-radius: 0.8rem;
+}
+
+/* =========================================================
+   PAGE PRÉFÉRENCES
+   ========================================================= */
+
+/* Ajoute les espaces principaux entre les blocs de paramètres */
+.settings-page {
+    padding-bottom: 2rem;
+}
+
+/* Espace les grandes sections de réglages */
+.app-settings,.typo-settings {
+    margin-bottom: 2rem;
+}
+
+/* Style commun des cartes de réglages */
+.application,.typography,.reset-local {
+    padding: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.8rem;
+    background-color: var(--card-background);
+}
+
+
+/* =========================================================
+   RÉGLAGE DES THÈMES
+   ========================================================= */
+
+/* Espace le titre du réglage thème */
+/* Le titre occupe toute la ligne */
+.theme-wrapper  p {
+    margin-bottom: 0.8rem;
+    width: 100%;
+}
+
+/* Dispose les trois choix de thème sur une ligne */
+.theme-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+
+/* Style général des choix de thème */
+.theme-wrapper label {
+    width: calc(33.33% - 0.55rem);
+    height: 87px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+/* Cache le bouton radio natif du flux mais conserve son fonctionnement */
+.theme-wrapper input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Aspect du choix Clair */
+.theme-wrapper label:nth-of-type(1) {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Aspect du choix Sépia */
+.theme-wrapper label:nth-of-type(2) {
+    background-color: #FBF2E4;
+    color: #59472e;
+}
+
+/* Aspect du choix Sombre */
+.theme-wrapper label:nth-of-type(3) {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+/*
+   Met en évidence le label qui contient le bouton radio sélectionné.
+   :has() permet ici de styliser le parent du radio checked.
+*/
+.theme-wrapper label:has(input:checked) {
+    border: 3px solid var(--accent-color);
+}
+
+
+/* =========================================================
+   COULEURS D'ACCENTUATION
+   ========================================================= */
+
+/* Dispose le titre puis les six couleurs */
+.color-wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+}
+
+/* Le titre des couleurs occupe toute la ligne */
+.color-wrapper > p {
+    width: 100%;
+}
+
+/* Supprime l'apparence radio pour transformer les champs en pastilles */
+.color-wrapper input[type="radio"] {
+    appearance: none;
+    width: 32px;
+    height: 32px;
     margin: 0;
     border-radius: 50%;
     cursor: pointer;
 }
 
+/* Violet */
 #color-default {
-    background-color: #6C19FF;
+    background-color: #6c19ff;
 }
 
+/* Bleu */
 #color-blue {
-    background-color: #3A78C8;
+    background-color: #3a78c8;
 }
 
+/* Bleu clair */
 #color-blue-light {
-    background-color: #25989F;
+    background-color: #25989f;
 }
 
+/* Vert */
 #color-green {
     background-color: #309661;
 }
 
+/* Orange */
 #color-orange {
-    background-color: #E18306;
+    background-color: #e18306;
 }
 
+/* Rouge */
 #color-red {
-    background-color: #DC415D;
+    background-color: #dc415d;
 }
 
-.color-wrapper input:checked {
-    outline: 3px solid #6C19FF;
+/* Entoure la couleur sélectionnée */
+.color-wrapper input[type="radio"]:checked {
+    outline: 3px solid var(--accent-color);
     outline-offset: 3px;
 }
 
-/* Test Typo */
 
-@font-face {
-    font-family: "OpenDyslexic";
-    src: url("/fonts/OpenDyslexic-Regular.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
+/* =========================================================
+   LANGUES
+   ========================================================= */
+
+/* Dispose les trois langues sur une ligne */
+.lang-wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
 }
 
-@font-face {
-    font-family: "OpenDyslexic";
-    src: url("/fonts/OpenDyslexic-Bold.otf") format("opentype");
-    font-weight: 700;
-    font-style: normal;
+/* Le titre prend toute la largeur */
+.lang-wrapper > p {
+    width: 100%;
 }
 
-.font-serif {
-    font-family: serif;
-}
-
-.font-sansSerif {
-    font-family: Arial, sans-serif;
-}
-
-.font-openDys {
-    font-family: "OpenDyslexic", sans-serif;
-}
-
-.width-narrow {
-    max-width: 500px;
-}
-
-.width-normal {
-    max-width: 700px;
-}
-
-.width-wide {
-    max-width: 900px;
-}
-
-/* Test Badge */
-
-.cover-wrapper {
+/* Transforme les labels en boutons */
+.lang-wrapper label {
+    width: calc(33.33% - 0.55rem);
     position: relative;
+    padding: 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    text-align: center;
+    cursor: pointer;
 }
 
-.badge {
+/* Cache les radios natifs */
+.lang-wrapper input {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    opacity: 0;
+}
 
-    padding: 4px 8px;
-    border-radius: 10px;
-
+/* Met en évidence la langue sélectionnée */
+.lang-wrapper label:has(input:checked) {
     background-color: var(--accent-color);
-    color: white;
-    font-size: 0.8rem;
+    border-color: var(--accent-color);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   RÉGLAGES TYPOGRAPHIQUES
+   ========================================================= */
+
+/* Ajoute un espace entre les différentes zones de typographie */
+.font-settings, .typo-ranges,.width-settings {
+    margin-top: 1.5rem;
+}
+
+
+/* =========================================================
+   POLICES
+   ========================================================= */
+
+/* Dispose les choix de police sur une ligne */
+.font-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+/* Le titre Police prend toute la ligne */
+.font-settings > p {
+    width: 100%;
+}
+
+/* Transforme chaque police en bouton */
+.font-settings label {
+    width: calc(33.33% - 0.55rem);
+    position: relative;
+    padding: 0.65rem 0.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Cache le radio natif */
+.font-settings input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Met en évidence la police sélectionnée */
+.font-settings label:has(input:checked) {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SLIDERS
+   ========================================================= */
+
+/* Ajoute un espace vertical entre les différents sliders */
+.range-setting {
+    margin-bottom: 1.6rem;
+}
+
+/* Le label du slider occupe toute la largeur */
+.range-setting label {
+    display: block;
+}
+
+/* Place le nom du réglage à gauche et sa valeur à droite */
+.range-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Slider sur toute la largeur */
+.range-setting input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   LARGEUR DU CONTENU
+   ========================================================= */
+
+/* Dispose les trois choix de largeur horizontalement */
+.width-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+/* Le titre prend toute la largeur */
+.width-settings > p {
+    width: 100%;
+}
+
+/* Style des boutons de largeur */
+.width-settings label {
+    width: calc(33.33% - 0.55rem);
+    position: relative;
+    padding: 0.6rem 0.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Cache les radios natifs */
+.width-settings input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Met en évidence la largeur sélectionnée */
+.width-settings label:has(input:checked) {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   RÉINITIALISATION DES PRÉFÉRENCES
+   ========================================================= */
+
+/* Card contenant la réinitialisation des préférences */
+.reset-local {
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.8rem;
+    background-color: var(--card-background);
+}
+
+/* Titre de la section Données */
+.reset-local h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+}
+
+/* Bouton de réinitialisation */
+.reset-local button {
+    padding: 0.55rem 0.8rem;
+    border: 1px solid #ff3030;
+    border-radius: 0.4rem;
+    background-color: transparent;
+    color: #ff3030;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FOCUS CLAVIER
+   ========================================================= */
+
+/* Rend visibles les éléments sélectionnés au clavier */
+a:focus-visible, button:focus-visible,input:focus-visible,select:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/*
+   Sur un écran plus large, l'application reste volontairement
+   au format mobile comme sur la maquette.
+*/
+@media screen and (min-width: 600px) {
+    .app, .reading-overlay {
+        max-width: 402px;
+        margin: auto;
+    }
 }

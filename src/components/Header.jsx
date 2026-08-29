@@ -1,4 +1,4 @@
-import { BookBookmarkIcon  } from "@phosphor-icons/react";
+import { BookBookmarkIcon, CaretDownIcon  } from "@phosphor-icons/react";
 import { usePreferences } from "../contexts/PreferencesContext";
 import { Link } from "react-router";
 
@@ -15,12 +15,15 @@ export default function Header(){
                     <BookBookmarkIcon  size={24} weight="fill"/> LEKTIO
                 </Link>
             </div>
-            <select name="select-lang" id="select-lang" value={langue} onChange={(e)=>setLangue(e.target.value)} aria-label="Choisir la langue">
+            <div className="select-wrapper">
+                <select name="select-lang" id="select-lang" value={langue} onChange={(e)=>setLangue(e.target.value)} aria-label="Choisir la langue">
                 {/* Je parcours le tableau des langues pour en faire une option par langue dans le select */}
                 {langues.map((langue)=>(
                     <option key={langue} value={langue}>{langue.toUpperCase()}</option>
                 ))}
-            </select>
+                </select>
+                <CaretDownIcon size={16}/>
+            </div>
         </header>
     )
 }

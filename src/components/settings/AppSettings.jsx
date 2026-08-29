@@ -14,7 +14,7 @@ export default function AppSettings(){
     return(
         <section className="app-settings">
             <div className="application">
-                <h2> <PaletteIcon size={24}/> {traductions.settings.appearance.label[langue]}</h2>
+                <h2 className="secondary-title"> <PaletteIcon size={24}/> {traductions.settings.appearance.label[langue]}</h2>
                 <ThemeSettings/>
                 <ColorSettings/>
                 <LanguageSettings/>
