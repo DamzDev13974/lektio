@@ -201,6 +201,7 @@ header {
 /* Conteneur du select pour positionner l'icône personnalisée */
 .select-wrapper {
     position: relative;
+    font-size: 0.75rem;
 }
 
 
@@ -227,6 +228,8 @@ header {
 }
 
 
+
+
 /* =========================================================
    CONTENU PRINCIPAL DES PAGES
    ========================================================= */
@@ -235,7 +238,6 @@ header {
 .home-page,.settings-page,.read-page {
     width: 100%;
     min-height: calc(100vh - 130px);
-    margin: auto;
     padding: 0 1.5rem 2rem 1.5rem;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -275,6 +277,7 @@ header {
 /* Permet de placer l'icône dans le champ de recherche */
 .search-wrapper {
     position: relative;
+    
 }
 
 /* Style du champ de recherche */
@@ -287,6 +290,7 @@ header {
     background-color: var(--card-background);
     color: var(--text-color);
     outline: none;
+    font-size: 1rem;
 }
 
 /* Change la bordure lorsque l'utilisateur sélectionne la recherche */
@@ -337,8 +341,9 @@ header {
 /* Auteur du livre dans la card */
 .card-book > a > p {
     margin-top: 0.25rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: 1rem;
+    
 }
 
 
@@ -393,7 +398,7 @@ header {
 /* Affiche le pourcentage au-dessus de la barre */
 .progress {
     margin-bottom: 0.3rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color : var(--text-color);
 }
 
@@ -446,7 +451,7 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 0.2rem;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
 }
 
 
@@ -970,10 +975,10 @@ header {
 /* Bouton de réinitialisation */
 .reset-local button {
     padding: 0.55rem 0.8rem;
-    border: 1px solid #ff3030;
-    border-radius: 0.4rem;
+    border: 2px solid #EB0000;
+    border-radius: 0.5rem;
     background-color: transparent;
-    color: #ff3030;
+    color: #EB0000;
     font-weight: bold;
     cursor: pointer;
 }
@@ -1000,7 +1005,7 @@ a:focus-visible, button:focus-visible,input:focus-visible,select:focus-visible {
 */
 @media screen and (min-width: 600px) {
     .app, .reading-overlay {
-        max-width: 402px;
+        max-width: 900px;
         margin: auto;
     }
 }

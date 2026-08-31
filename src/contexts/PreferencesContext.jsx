@@ -16,7 +16,7 @@ export default function PreferencesProvider({children}){
     const [couleur, setCouleur] = useState(()=>{ return localStorage.getItem("color") || "default"});
     const [police, setPolice] = useState(()=>{return localStorage.getItem("police")|| "sanSerif"});
     const [tailleTexte, setTailleTexte] = useState(()=>{
-        //création de la variable valeur afin de la convertir en int par la suite
+        //création de la variable valeur afin de la convertir en int par la suite et eviter le double appel du localStorage
         const valeur = localStorage.getItem("tailleTexte");
         //Si valeur est différent de null, je retourne sa valeur convertie, sinon 16 par défaut
         return valeur !== null ? parseInt(valeur) : 16;
