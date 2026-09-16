@@ -14,7 +14,7 @@ export default function PreferencesProvider({children}){
     //State pour les préférences de l'user
     const [theme,setTheme] = useState(()=>{ return localStorage.getItem("theme") || "clear"});//recup la valeur du localStorage sinon init en string sur clear
     const [couleur, setCouleur] = useState(()=>{ return localStorage.getItem("color") || "default"});
-    const [police, setPolice] = useState(()=>{return localStorage.getItem("police")|| "sanSerif"});
+    const [police, setPolice] = useState(()=>{return localStorage.getItem("police")|| "sansSerif"});
     const [tailleTexte, setTailleTexte] = useState(()=>{
         //création de la variable valeur afin de la convertir en int par la suite et eviter le double appel du localStorage
         const valeur = localStorage.getItem("tailleTexte");

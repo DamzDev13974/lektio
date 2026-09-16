@@ -11,7 +11,7 @@ export default function SearchBar(){
 
     return(
         <div className="search-book">
-            <form action="">
+            <form>
                 <div className="search-wrapper">
                     <input type="text" name="search" id="search" value={recherche} onChange={(e)=>setRecherche(e.target.value)} placeholder={traductions.nav.search[langue]} aria-label={traductions.nav.search[langue]}/>
                     <MagnifyingGlassIcon size={24}/>
